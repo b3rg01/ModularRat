@@ -1,5 +1,4 @@
 @REM second stage of RAT
-@REM created by : Moussa
 
 @REM variables
 set "FILE_NAME=phase2.cmd"

@@ -1,5 +1,4 @@
 @REM second stage of RAT
-@REM created by : Moussa
 
 @REM variables
 set "PATH_PHASE1=%1"

