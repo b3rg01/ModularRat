@@ -18,10 +18,11 @@ function menu() {
     Write-Host "p : show process running"
     Write-Host "n : show net ip address information"
     Write-Host "f : show hot fixes"
+    Write-Host "c : show command history"
     Write-Host "s : show services"
     Write-Host "w : show windows defender details"
+    Write-Host "q : quit"
     Write-Host ""
-    Write-Host "Press q and enter to quit"
 }
 
 function ouputFile($data) {
@@ -38,12 +39,12 @@ function run() {
     do {
         title
         menu
-
         $option = Read-Host "Choose an option"
 
         switch ($option) {
             "v" { ouputFile($PSVersionTable) }
             "e" { ouputFile(Get-ExecutionPolicy -List) }
+            "c" { ouputFile(Get-History) }
             "p" { ouputFile(Get-Process) }
             "n" { ouputFile(Get-NetIPAddress) }
             "f" { ouputFile(Get-HotFix) }
