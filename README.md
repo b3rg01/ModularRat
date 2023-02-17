@@ -9,7 +9,7 @@
 
 # Architecture
 
-![Getting Started](./architecture.drawio.png)
+![alt text](https://github.com/b3rg01/ModularRat/blob/main/architecture.drawio.png?raw=true)
 
 # How It Works
 
