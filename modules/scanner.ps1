@@ -20,6 +20,7 @@ function menu() {
     Write-Host "f : show hot fixes"
     Write-Host "c : show command history"
     Write-Host "s : show services"
+    Write-Host "j : show jobs"
     Write-Host "w : show windows defender details"
     Write-Host "q : quit"
     Write-Host ""
@@ -49,6 +50,7 @@ function run() {
             "n" { ouputFile(Get-NetIPAddress) }
             "f" { ouputFile(Get-HotFix) }
             "s" { ouputFile(Get-Service) }
+            "s" { ouputFile(Get-Job) }
             "w" { ouputFile(Get-Service Windefend, SecurityHealthService, wscsvc | Select-Object Name, DisplayName, Status) }
         }
     }while ($option -ne "q") 

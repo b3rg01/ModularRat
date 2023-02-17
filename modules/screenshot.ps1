@@ -22,14 +22,10 @@ function menu() {
 }
 function  takeScreenShot {
     begin {
-        Add-Type -AssemblyName System.Drawing
-        $drawing = [Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.FormatDescription -eq "JPEG" }
+        Start-Sleep -Milliseconds 250
+        [Windows.Forms.Sendkeys]::SendWait("{PrtSc}")
     }
     process { 
-        Start-Sleep -Milliseconds 250
-
-        [Windows.Forms.Sendkeys]::SendWait("{PrtSc}")
-
         # get image from clipboard
         Start-Sleep -Milliseconds 250
         $clipboard = [Windows.Forms.Clipboard]::GetImage()
@@ -38,9 +34,9 @@ function  takeScreenShot {
         $drawingEncoded = New-Object Drawing.Imaging.EncoderParameters
         $drawingEncoded.Param[0] = New-Object Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]100)
 
-        # save image
     }
     end {
+        # save image
         $fileName = Read-Host "Specify the name of the screenshot file without the extension"
         $clipboard.Save("$(Get-Location)\$filename.jpg")
     }
