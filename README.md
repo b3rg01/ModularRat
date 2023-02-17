@@ -4,16 +4,20 @@
 | | | | | | (_) | (_| | |_| | | (_| | |    | | | (_| | |_
 |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
 
-Created by : he$einb3rg
+*Created by : he$einb3rg*
 ```
 
-*Architecture*
+# Architecture
 
-*How It Works*
+![Getting Started](./architecture.drawio.png)
 
-*How To Use*
+# How It Works
 
-*References*
+
+# How To Use
+
+
+# References
 
 - https://www.netspi.com/blog/technical/network-penetration-testing/15-ways-to-bypass-the-powershell-execution-policy/
 
