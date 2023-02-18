@@ -7,17 +7,17 @@ function title() {
     | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
     | | | | | | (_) | (_| | |_| | | (_| | |    | | | (_| | |_
     |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
-    "
+    " -ForegroundColor DarkGray
     Write-Host "
                         Module : Screenshot
-    "
-    Write-Host "==========================================================="
+    " -ForegroundColor Blue
+    Write-Host "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" -ForegroundColor DarkGray
     Write-Host ""
 }
 
 function menu() {
-    Write-Host "t : take screenshot"
-    Write-Host "q : quit"
+    Write-Host "t : take screenshot" -ForegroundColor DarkGray
+    Write-Host "q : quit" -ForegroundColor Red
     Write-Host ""
 }
 function  takeScreenShot {

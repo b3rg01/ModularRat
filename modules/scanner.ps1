@@ -4,25 +4,25 @@ function title() {
     | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
     | | | | | | (_) | (_| | |_| | | (_| | |    | | | (_| | |_
     |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
-    "
+    " -ForegroundColor DarkGray
     Write-Host "
                         Module : Scanner
-    "
-    Write-Host "==========================================================="
+    " -ForegroundColor Blue
+    Write-Host "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" -ForegroundColor DarkGray
     Write-Host ""
 }
 
 function menu() {
-    Write-Host "v : show ps version table"
-    Write-Host "e : show execution list policy"
-    Write-Host "p : show process running"
-    Write-Host "n : show net ip address information"
-    Write-Host "f : show hot fixes"
-    Write-Host "c : show command history"
-    Write-Host "s : show services"
-    Write-Host "j : show jobs"
-    Write-Host "w : show windows defender details"
-    Write-Host "q : quit"
+    Write-Host "v : show ps version table" -ForegroundColor DarkGray
+    Write-Host "e : show execution list policy" -ForegroundColor DarkGray
+    Write-Host "p : show process running" -ForegroundColor DarkGray
+    Write-Host "n : show net ip address information" -ForegroundColor DarkGray
+    Write-Host "f : show hot fixes" -ForegroundColor DarkGray
+    Write-Host "c : show command history" -ForegroundColor DarkGray
+    Write-Host "s : show services" -ForegroundColor DarkGray
+    Write-Host "j : show jobs" -ForegroundColor DarkGray
+    Write-Host "w : show windows defender details" -ForegroundColor DarkGray
+    Write-Host "q : quit" -ForegroundColor Red
     Write-Host ""
 }
 

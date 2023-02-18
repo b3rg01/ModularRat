@@ -20,7 +20,6 @@
 # References
 
 - https://www.netspi.com/blog/technical/network-penetration-testing/15-ways-to-bypass-the-powershell-execution-policy/
-
 - https://www.howtogeek.com/789655/how-to-open-powershell-with-admin-privileges-from-cmd/
-
 - Important to note that i set the execution policy to remoteSigned to facilitate the demo
+- https://www.nextofwindows.com/creating-a-simple-keylogger-using-powershell-download
