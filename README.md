@@ -23,3 +23,5 @@ Created by : he$einb3rg
 - https://www.howtogeek.com/789655/how-to-open-powershell-with-admin-privileges-from-cmd/
 - Important to note that i set the execution policy to remoteSigned to facilitate the demo
 - https://www.nextofwindows.com/creating-a-simple-keylogger-using-powershell-download
+- https://pypi.org/project/uploadserver/
+- https://github.com/besimorhino/powercat

