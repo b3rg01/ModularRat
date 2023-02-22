@@ -2,22 +2,22 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
 function title {
-    Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor DarkGray
+    Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host "
      _ __ ___   ___   __| |_   _| | __ _ _ __   _ __ __ _| |_
     | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
     | | | | | | (_) | (_| | |_| | | (_| | |    | | | (_| | |_
     |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
-    " -ForegroundColor DarkGray
+    " -ForegroundColor Yellow
     Write-Host "
                         Module : File Handler
     " -ForegroundColor Blue
-    Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor DarkGray
+    Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host ""
  }
 
 function menu {
-    Write-Host "t : take screenshot" -ForegroundColor DarkGray
+    Write-Host "t : take screenshot" -ForegroundColor Yellow
     Write-Host "q : quit" -ForegroundColor Red
     Write-Host ""
 }
@@ -38,7 +38,7 @@ function  takeScreenShot {
     }
     end {
         # save image
-        $fileName = Read-Host "Specify the name of the screenshot file without the extension"
+        $fileName = Read-Host "Specify the name of the screenshot file without the extension" -ForegroundColor DarkGray
         $clipboard.Save("$(Get-Location)\$filename.jpg")
     }
 }

