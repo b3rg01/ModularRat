@@ -27,3 +27,4 @@ Created by : he$einb3rg
 - https://www.nextofwindows.com/creating-a-simple-keylogger-using-powershell-download
 - https://pypi.org/project/uploadserver/
 - https://github.com/besimorhino/powercat
+- https://stackoverflow.com/questions/36268925/powershell-invoke-restmethod-multipart-form-data

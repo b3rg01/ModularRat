@@ -42,6 +42,8 @@ function run() {
    }
    catch {
       Write-Host "Error while trying to upload file..." -ForegroundColor Red
+      Write-Host "Make sure you that the file is present in the current directory!" -ForegroundColor Yellow
+      Write-Host "Make sure you have the right file name with the correct extension!" -ForegroundColor Yellow
       exit 
    }
 }
