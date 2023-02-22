@@ -46,6 +46,7 @@ function run() {
       Write-Host "Make sure you have the right file name with the correct extension!" -ForegroundColor Yellow
       exit 
    }
+   Write-Host "The file has been sent successfully...:)"-ForegroundColor Green
 }
 
 run
