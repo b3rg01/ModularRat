@@ -18,20 +18,19 @@ function title {
 
 function upload($file_location) {
    $uri = "http://10.0.0.212:8000/upload"
-   $params = @{
-      files = $file_location
-   }
-   $multipartContent = New-Object System.Net.Http.MultipartFormDataContent
+   $fileBytes = [System.IO.File]::ReadAllBytes($file_location);
+   $fileEnc = [System.Text.Encoding]::GetEncoding('UTF-8').GetString($fileBytes);
+   $boundary = [System.Guid]::NewGuid().ToString(); 
+   $LF = "`r`n";
+   $bodyLines = ( 
+      "--$boundary",
+      "Content-Disposition: form-data; name=`"files`"; filename=`"$file_name`"",
+      "Content-Type: application/octet-stream$LF",
+      $fileEnc,
+      "--$boundary--$LF" 
+   ) -join $LF
 
-   foreach ($param in $params.GetEnumerator()) {
-      $stream = [System.IO.File]::OpenRead($param.Value.FullName)
-      $fileContent = New-Object System.Net.Http.StreamContent($stream)
-      $multipartContent.Add($fileContent, $param.Key)
-   }
-
-   $response = Invoke-RestMethod -Uri $uri -Method POST -Body $multipartContent
-
-   Write-Host $response
+   Invoke-RestMethod -Uri $uri -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines
 }
 
 function run() {
