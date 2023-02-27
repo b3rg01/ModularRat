@@ -13,7 +13,7 @@ function title {
     Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host ""
  }
-
+#Use Write-Output
 function menu {
     Write-Host "start : start a job" -ForegroundColor DarkGray
     Write-Host "stop : stop a job" -ForegroundColor DarkGray
@@ -24,10 +24,10 @@ function menu {
 }
 
 function startJob {
-    $scriptBlock = Read-Host "Enter your scriptBlock with the '{}'"
+    $module_name = Read-Host "Enter your scriptBlock with the '{}'"
     try {
         
-        Start-Job -ScriptBlock $scriptBlock -ErrorAction Continue
+        Start-Job "{Set-Location $using:PWD; powershell.exe -WindowStyle Hidden -c '. $(Get-Location)\$module_name'" -ErrorAction Continue
     }
     catch {
         Write-Host "Error while trying to run command..." -ForegroundColor Red
@@ -41,7 +41,7 @@ function stopJob {
         Stop-Job $name
     }
     catch {
-        Write-Host "Error while trying to run command, make sure you have the right name..." -ForegroundColor Red
+        Write-Warning "Error while trying to run command, make sure you have the right name..." -ForegroundColor Red
     }
 }
 
@@ -52,7 +52,7 @@ function removeJob {
         Remove-Job $name
     }
     catch {
-        Write-Host "Error while trying to run command, make sure you have the right name..." -ForegroundColor Red
+        Write-Warning "Error while trying to run command, make sure you have the right name..." -ForegroundColor Red
     }
 }
 
