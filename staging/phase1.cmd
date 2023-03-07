@@ -4,7 +4,7 @@
 set "INITIAL_PATH=%cd%"
 set "FILE_NAME=phase1.cmd"
 set "STAGING_PATH=http://10.0.0.212:8000/staging"
-set "STARTUP_PATH=C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+set "STARTUP_PATH=C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\"
 
 @REM move into startup directory
 cd %STARTUP_PATH%

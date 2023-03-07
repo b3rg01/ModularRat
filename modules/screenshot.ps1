@@ -10,7 +10,7 @@ function title {
     |_| |_| |_|\___/ \__,_|\__,_|_|\__,_|_|    |_|  \__,_|\__|
     " -ForegroundColor Yellow
     Write-Host "
-                        Module : File Handler
+                        Module : Screenshot
     " -ForegroundColor Blue
     Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host ""
