@@ -27,7 +27,7 @@ function startJob {
     $module_name = Read-Host "Enter your scriptBlock with the '{}'"
     try {
         
-        Start-Job "{Set-Location $using:PWD; powershell.exe -WindowStyle Hidden -c '. $(Get-Location)\$module_name'" -ErrorAction Continue
+        Start-Job "{Set-Location $using:PWD; powershell.exe -WindowStyle Hidden -c '. $(Get-Location)\$module_name'}" -ErrorAction Continue
     }
     catch {
         Write-Host "Error while trying to run command..." -ForegroundColor Red

