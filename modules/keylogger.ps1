@@ -1,4 +1,3 @@
-$file_name = If ($args[0]) { $args[0] }else { Write-Error "Please specify the file name..." }
 function title {
     Write-Host "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" -ForegroundColor Yellow
     Write-Host "
