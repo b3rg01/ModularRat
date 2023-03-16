@@ -15,7 +15,6 @@ function title {
    Write-Host ""
 }
 
-
 function upload($file_location) {
    $uri = "http://10.0.0.212:8000/upload"
    $fileBytes = [System.IO.File]::ReadAllBytes($file_location);
