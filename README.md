@@ -15,8 +15,20 @@ Created by : he$einb3rg
 
 # How It Works
 
+The attacker is connected to the command and control server through ssh. The command and control server contains all the modules that will be uploaded on the victim machine. In my case my command and control server represents my raspberrypi that runs an uploadserver given to me by python, so i can expose and download the files from the machine to another or I can upload file from a remote machine to my command and control center. Your command and control server could be an amazon instance, or a vm, or another machine. There is an initial program that will be executed on the victim machine, you can use any means necessary to get the program to execute himself on the victim
 
 # How To Use
+There is an initial program that will be executed on the victim machine, you can use any means necessary to get the program to execute himself on the victim. Afterwards, all the modules will get downloaded on the victim machine et you well get a reverse shell connection back to the C2 and from there you will be able to execute the modules.
+
+## Steps
+  - Make an ssh connection to your command and control center
+  - Start your uploadserver on you c2 : python -m uploadserver
+  - Find a way to execute the phase1.cmd program on the victim machine
+    - Spear Phishing
+    - Social Engineering
+  - Start a second ssh connection to your command and control center
+  - Start a netcat listener
+  - Enjoy...;)
 
 
 # References
