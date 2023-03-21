@@ -22,12 +22,12 @@ There is an initial program that will be executed on the victim machine, you can
 
 ### Steps
   - Make an ssh connection to your command and control center
-  - Start your uploadserver on you c2 : python -m uploadserver
-  - Find a way to execute the phase1.cmd program on the victim machine
-    - Spear Phishing
-    - Social Engineering
+  - Move into your ModularRat folder and start your uploadserver on you c2 : python3 -m uploadserver
   - Start a second ssh connection to your command and control center
   - Start a netcat listener
+  - Find a way to execute the phase1.cmd program on the victim machine (for the demo we will drag and drop only)
+    - Spear Phishing
+    - Social Engineering
   - Enjoy...;)
 
 
@@ -35,7 +35,6 @@ There is an initial program that will be executed on the victim machine, you can
 
 - https://www.netspi.com/blog/technical/network-penetration-testing/15-ways-to-bypass-the-powershell-execution-policy/
 - https://www.howtogeek.com/789655/how-to-open-powershell-with-admin-privileges-from-cmd/
-- Important to note that i set the execution policy to remoteSigned to facilitate the demo
 - https://www.nextofwindows.com/creating-a-simple-keylogger-using-powershell-download
 - https://pypi.org/project/uploadserver/
 - https://github.com/besimorhino/powercat

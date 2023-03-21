@@ -23,16 +23,16 @@ function  takeScreenShot($file_name) {
         [Windows.Forms.Sendkeys]::SendWait("{PrtSc}")
     }
     process { 
-        # get image from clipboard
+        # récupérer l'image du clipboard
         Start-Sleep -Milliseconds 250
         $clipboard = [Windows.Forms.Clipboard]::GetImage()
         
-        # create image to jpeg
+        # créer l'image en tant que jped
         $drawingEncoded = New-Object Drawing.Imaging.EncoderParameters
         $drawingEncoded.Param[0] = New-Object Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]100)
     }
     end {
-        # save image
+        # sauvegarder l'image
         $clipboard.Save("$(Get-Location)\$file_name.jpg")
     }
 }

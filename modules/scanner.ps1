@@ -28,10 +28,10 @@ function menu() {
 }
 
 function ouputFile($data) {
-    $answer = Read-Host "Do you want to output a file as csv?(y/n)" -ForegroundColor DarkGray
+    $answer = Read-Host "Do you want to output a file as csv?(y/n)"
                 
     if ($answer -eq "y") {
-        $fileName = Read-Host "Specify the name of the file without the extension" -ForegroundColor DarkGray
+        $fileName = Read-Host "Specify the name of the file without the extension"
         $data | ConvertTo-Csv | Out-File "$fileName.csv"
     }
     Write-Host "$data" 

